@@ -1,0 +1,54 @@
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+ }
+
+*{
+    box-sizing: border-box;
+    // margin: 10px;
+    // padding: 10px;
+}
+
+body{
+    background-color: #393E46;
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+main{
+    // background-color: #665A48;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    background-color: #222831 ;
+    width: 480px;
+    height: 400px;
+    text-align: center;
+    border-radius: 14px;
+
+    &__title{
+        font-weight: 600;
+        font-size: 2.8rem;
+        color: #EEEEEE;
+    }
+    
+    &__img{
+        width: 100px;
+        height: 100px;
+        border: 1px solid #FFD369;
+        border-radius: 50%;
+    }
+
+    &__name{
+        font-size: 1.8rem;
+        color: #EEEEEE;
+    }
+
+    &__lvl{
+        color: #EEEEEE;
+        font-size: 1.8rem;
+    }
+}
