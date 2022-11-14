@@ -1,24 +1,42 @@
 const input = document.getElementById('card-input')
 const button = document.getElementById('card-button')
 
-/*
-//funcion para guardar el input
-button.addEventListener('click', (e)=>{
-    console.log(input.value)
-})
-*/
+/* Nueva implementacion con axios*/
 
-/*
+button.addEventListener('click', () => {
+
+    //guardamos el summoner name
+    const summoner = input.value
+    const apiKey = 'RGAPI-150f68e3-1dfc-4b57-9540-819f749a178d'
+
+    //al importar axios, nos brinda el metodo con los siguientes atributos
+    axios({
+        method: 'GET',
+        url: `https://la1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summoner}?api_key=${apiKey}`
+    }).then(res => {
+        const id = document.getElementById('card-id')
+        const img = document.getElementById('card-img')
+        const lvl = document.getElementById('card-lvl')
+
+        //AXIOS DEVUELVE UN OBJETO, EN donde debemos acceder a .data para los datos
+        id.textContent = res.data.name
+
+        img.src = `http://ddragon.leagueoflegends.com/cdn/12.19.1/img/profileicon/${res.data.profileIconId}.png`
+        img.classList.add('card__img')
+
+        lvl.textContent = res.data.summonerLevel
+    }).catch(e => console.log(e))
+
+})
+
+
+/*    Solucion con XMLHttpRequest
     1.- crear el objeto donde se guarda la respuesta de la peticion  (xhr)
     2.- abrimos la conexion y hacemos una peticion GET con el objeto creado
     3.-ejecuamos un evento load
     4.-enviamos
 
-*/
-
-
-
-button.addEventListener('click', ()=>{
+    button.addEventListener('click', ()=>{
 
     //capturar el input
     const summoner = input.value
@@ -62,42 +80,5 @@ button.addEventListener('click', ()=>{
     xhr.send()
 
 })
-
-
-
-
-/*
-
-button.addEventListener('click', ()=>{
-
-    //creamos el objeto globalmente
-    let xhr
-    //validacion e instancia del nuevo objeto
-    if(window.XMLHttpRequest) xhr = new XMLHttpRequest()
-    else xhr = new ActiveXObject('Microsoft.XMLHTTP')
-
-    //abrimos la conexion
-    xhr.open('GET', 'https://jsonplaceholder.typicode.com/users')
-
-    //load se dispare cuando llego toda la info
-    xhr.addEventListener('load', (data)=>{
-        //construimos el string a objeto 
-        const dataJSON = JSON.parse(data.target.response)
-
-        const list = document.getElementById('list')
-        //recorro el array
-        for(const userInfo of dataJSON){
-            //creo el elemento
-            const listItem = document.createElement('li')
-            listItem.textContent = `${userInfo.id} - ${userInfo.name}`
-            //añado los items recorridos a la lista
-            list.appendChild(listItem)
-        }
-    })
-
-    xhr.send()
-
-})
-
 
 */
