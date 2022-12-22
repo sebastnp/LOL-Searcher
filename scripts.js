@@ -7,7 +7,7 @@ button.addEventListener('click', () => {
 
     //guardamos el summoner name
     const summoner = input.value
-    const apiKey = 'RGAPI-150f68e3-1dfc-4b57-9540-819f749a178d'
+    const apiKey = 'RGAPI-e574e3a4-eae6-45b3-8a63-4b68ef274422'
 
     //al importar axios, nos brinda el metodo con los siguientes atributos
     axios({
